@@ -1,3 +1,5 @@
+from typing import ClassVar
+
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
@@ -11,9 +13,7 @@ User = get_user_model()
 if settings.DJANGO_ADMIN_FORCE_ALLAUTH:
     # Force the `admin` sign in process to go through the `django-allauth` workflow:
     # https://django-allauth.readthedocs.io/en/stable/advanced.html#admin
-    admin.site.login = decorators.login_required(  # type: ignore[method-assign]
-        admin.site.login
-    )
+    admin.site.login = decorators.login_required(admin.site.login)
 
 
 @admin.register(User)
@@ -37,9 +37,9 @@ class UserAdmin(auth_admin.UserAdmin):
         ),
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
-    list_display = ["email", "name", "is_superuser"]
-    search_fields = ["name"]
-    ordering = ["id"]
+    list_display: ClassVar[list[str]] = ["email", "name", "is_superuser"]
+    search_fields: ClassVar[list[str]] = ["name"]
+    ordering: ClassVar[list[str]] = ["id"]
     add_fieldsets = (
         (None, {"classes": ("wide",), "fields": ("email", "password1", "password2")}),
     )

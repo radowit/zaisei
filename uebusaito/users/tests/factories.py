@@ -1,5 +1,5 @@
 from collections.abc import Sequence
-from typing import Any
+from typing import Any, ClassVar
 
 from django.contrib.auth import get_user_model
 from factory import Faker, post_generation
@@ -11,7 +11,7 @@ class UserFactory(DjangoModelFactory):
     name = Faker("name")
 
     @post_generation
-    def password(self, create: bool, extracted: Sequence[Any], **kwargs):
+    def password(self, extracted: Sequence[Any]):
         password = (
             extracted
             if extracted
@@ -35,4 +35,4 @@ class UserFactory(DjangoModelFactory):
 
     class Meta:
         model = get_user_model()
-        django_get_or_create = ["email"]
+        django_get_or_create: ClassVar[list[str]] = ["email"]

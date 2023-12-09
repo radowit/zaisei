@@ -1,26 +1,26 @@
 from __future__ import annotations
 
-import typing
+from typing import TYPE_CHECKING, Any
 
 from allauth.account.adapter import DefaultAccountAdapter
 from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 from django.conf import settings
-from django.http import HttpRequest
 
-if typing.TYPE_CHECKING:
+if TYPE_CHECKING:
     from allauth.socialaccount.models import SocialLogin
+    from django.http import HttpRequest
 
     from uebusaito.users.models import User
 
 
 class AccountAdapter(DefaultAccountAdapter):
-    def is_open_for_signup(self, request: HttpRequest) -> bool:
+    def is_open_for_signup(self, request: HttpRequest) -> bool:  # noqa: PLR6301, ARG002
         return getattr(settings, "ACCOUNT_ALLOW_REGISTRATION", True)
 
 
 class SocialAccountAdapter(DefaultSocialAccountAdapter):
-    def is_open_for_signup(
-        self, request: HttpRequest, sociallogin: SocialLogin
+    def is_open_for_signup(  # noqa: PLR6301
+        self, request: HttpRequest, sociallogin: SocialLogin  # noqa: ARG002
     ) -> bool:
         return getattr(settings, "ACCOUNT_ALLOW_REGISTRATION", True)
 
@@ -28,7 +28,7 @@ class SocialAccountAdapter(DefaultSocialAccountAdapter):
         self,
         request: HttpRequest,
         sociallogin: SocialLogin,
-        data: dict[str, typing.Any],
+        data: dict[str, Any],
     ) -> User:
         """
         Populates user information from social provider info.

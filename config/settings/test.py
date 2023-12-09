@@ -2,7 +2,7 @@
 With these settings, tests run faster.
 """
 
-from .base import *  # noqa
+from .base import *  # noqa: F403
 from .base import env
 
 # GENERAL
@@ -24,10 +24,6 @@ PASSWORD_HASHERS = ["django.contrib.auth.hashers.MD5PasswordHasher"]
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
-
-# DEBUGGING FOR TEMPLATES
-# ------------------------------------------------------------------------------
-TEMPLATES[0]["OPTIONS"]["debug"] = True  # type: ignore # noqa: F405
 
 # MEDIA
 # ------------------------------------------------------------------------------

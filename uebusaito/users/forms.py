@@ -1,3 +1,5 @@
+from typing import ClassVar
+
 from allauth.account.forms import SignupForm
 from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from django.contrib.auth import forms as admin_forms
@@ -11,7 +13,7 @@ User = get_user_model()
 class UserAdminChangeForm(admin_forms.UserChangeForm):
     class Meta(admin_forms.UserChangeForm.Meta):
         model = User
-        field_classes = {"email": EmailField}
+        field_classes: ClassVar[dict[str, type[EmailField]]] = {"email": EmailField}
 
 
 class UserAdminCreationForm(admin_forms.UserCreationForm):
@@ -23,8 +25,10 @@ class UserAdminCreationForm(admin_forms.UserCreationForm):
     class Meta(admin_forms.UserCreationForm.Meta):
         model = User
         fields = ("email",)
-        field_classes = {"email": EmailField}
-        error_messages = {"email": {"unique": _("This email has already been taken.")}}
+        field_classes: ClassVar[dict[str, type[EmailField]]] = {"email": EmailField}
+        error_messages: ClassVar[dict[str, dict[str, str]]] = {
+            "email": {"unique": _("This email has already been taken.")}
+        }
 
 
 class UserSignupForm(SignupForm):
