@@ -16,13 +16,16 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
 
-# Requirements are installed here to ensure they will be cached.
-COPY ./requirements /requirements
+# Create requirements
+RUN pip install poetry
+COPY ./poetry.lock /
+COPY ./pyproject.toml /
+RUN poetry export --with=dev --format=requirements.txt > requirements.txt
 
 # create python dependency wheels
 RUN pip wheel --no-cache-dir --wheel-dir /usr/src/app/wheels  \
-  -r /requirements/local.txt -r /requirements/production.txt \
-  && rm -rf /requirements
+  -r requirements.txt \
+  && rm -rf requirements.txt
 
 
 # Python 'run' stage

@@ -13,12 +13,15 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   # psycopg2 dependencies
   libpq-dev
 
-# Requirements are installed here to ensure they will be cached.
-COPY ./requirements .
+# Create requirements
+RUN pip install poetry
+COPY ./poetry.lock /
+COPY ./pyproject.toml /
+RUN poetry export --with=dev --format=requirements.txt > requirements.txt
+
 
 # Create Python Dependency and Sub-Dependency Wheels.
-RUN pip wheel --wheel-dir /usr/src/app/wheels  \
-  -r ${BUILD_ENVIRONMENT}.txt
+RUN pip wheel --wheel-dir /usr/src/app/wheels -r requirements.txt
 
 
 # Python 'run' stage
