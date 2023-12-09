@@ -11,7 +11,9 @@ User = get_user_model()
 if settings.DJANGO_ADMIN_FORCE_ALLAUTH:
     # Force the `admin` sign in process to go through the `django-allauth` workflow:
     # https://django-allauth.readthedocs.io/en/stable/advanced.html#admin
-    admin.site.login = decorators.login_required(admin.site.login)  # type: ignore[method-assign]
+    admin.site.login = decorators.login_required(  # type: ignore[method-assign]
+        admin.site.login
+    )
 
 
 @admin.register(User)
@@ -30,7 +32,7 @@ class UserAdmin(auth_admin.UserAdmin):
                     "is_superuser",
                     "groups",
                     "user_permissions",
-                ),
+                )
             },
         ),
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
@@ -39,11 +41,5 @@ class UserAdmin(auth_admin.UserAdmin):
     search_fields = ["name"]
     ordering = ["id"]
     add_fieldsets = (
-        (
-            None,
-            {
-                "classes": ("wide",),
-                "fields": ("email", "password1", "password2"),
-            },
-        ),
+        (None, {"classes": ("wide",), "fields": ("email", "password1", "password2")}),
     )
