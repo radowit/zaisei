@@ -1,7 +1,7 @@
 import pytest
 
+from tests.uebusaito.users.factories import UserFactory
 from uebusaito.users.models import User
-from uebusaito.users.tests.factories import UserFactory
 
 
 @pytest.fixture(autouse=True)

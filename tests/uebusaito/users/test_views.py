@@ -11,9 +11,9 @@ from django.test import RequestFactory
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
+from tests.uebusaito.users.factories import UserFactory
 from uebusaito.users.forms import UserAdminChangeForm
 from uebusaito.users.models import User
-from uebusaito.users.tests.factories import UserFactory
 from uebusaito.users.views import UserRedirectView, UserUpdateView, user_detail_view
 
 pytestmark = pytest.mark.django_db
