@@ -7,8 +7,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>
+      {{ flatpage.sites.first.name }} -
       {% block title %}
-        {{ site.name }}
       {% endblock title %}
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -58,11 +58,15 @@
                   aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand" href="{% url 'home:home' %}">{{ site.name }}</a>
+          <a class="navbar-brand"
+             href="{% url 'django.contrib.flatpages.views.flatpage' '/' %}">
+            {{ flatpage.sites.first.name }}
+          </a>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="{% url 'home:home' %}">Home <span class="visually-hidden">(current)</span></a>
+                <a class="nav-link"
+                   href="{% url 'django.contrib.flatpages.views.flatpage' '/' %}">Home <span class="visually-hidden">(current)</span></a>
               </li>
             </ul>
           </div>
