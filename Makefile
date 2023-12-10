@@ -17,3 +17,11 @@ test-unit-cov:
 
 deploy-local:
 	docker-compose -f local.yml up --build
+
+install:
+	pip install -U pip
+	pip install poetry
+	poetry install
+
+mypy:
+	poetry run mypy config manage.py merge_production_dotenvs_in_dotenv.py uebusaito

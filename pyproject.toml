@@ -84,15 +84,36 @@ skip = ["venv/"]
 skip_glob = ["**/migrations/*.py"]
 
 
-# ==== mypy ====
+# MYPY
 [tool.mypy]
-python_version = "3.12"
 check_untyped_defs = true
-ignore_missing_imports = true
-warn_unused_ignores = true
-warn_redundant_casts = true
-warn_unused_configs = true
+color_output = true
+disallow_any_decorated = true
+disallow_any_explicit = false
+disallow_any_expr = false
+disallow_any_generics = true
+disallow_any_unimported = true
+disallow_incomplete_defs = true
+disallow_subclassing_any = true
+disallow_untyped_calls = true
+disallow_untyped_decorators = true
+disallow_untyped_defs = true
+exclude = ["tests", "uebusaito/.*/tests/.*"]
 plugins = ["mypy_django_plugin.main"]
+pretty = true
+python_version = "3.12"
+show_column_numbers = true
+show_error_context = true
+extra_checks = true
+strict_equality = true
+strict_optional = true
+warn_incomplete_stub = true
+warn_no_return = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+warn_unused_ignores = true
 
 [[tool.mypy.overrides]]
 # Django migrations should not produce any errors:

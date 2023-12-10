@@ -3,7 +3,7 @@ Base settings to build other settings files upon.
 """
 from pathlib import Path
 
-import environ
+import environ  # type: ignore [import-untyped]
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # uebusaito/
@@ -72,7 +72,7 @@ THIRD_PARTY_APPS = [
     "crispy_bootstrap5",
 ]
 
-LOCAL_APPS = [
+LOCAL_APPS: list[str] = [
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
