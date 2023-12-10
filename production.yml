@@ -37,4 +37,3 @@ services:
 
   redis:
     image: redis:6
-

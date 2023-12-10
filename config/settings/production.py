@@ -153,4 +153,4 @@ LOGGING = {
 
 # Your stuff...
 # ------------------------------------------------------------------------------
-CSRF_TRUSTED_ORIGINS = ['https://radekmg.pl']
+CSRF_TRUSTED_ORIGINS = ["https://radekmg.pl"]

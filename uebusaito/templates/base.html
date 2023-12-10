@@ -1,5 +1,7 @@
 {% load static i18n compress %}
+{% load flatpages %}
 
+{% get_flatpages as flatpages %}
 <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
@@ -58,16 +60,14 @@
                   aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="navbar-brand"
-             href="{% url 'django.contrib.flatpages.views.flatpage' '/' %}">
-            {{ flatpage.sites.first.name }}
-          </a>
+          <a class="navbar-brand" href="{{ flatpage.url }}">{{ flatpage.sites.first.name }}</a>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link"
-                   href="{% url 'django.contrib.flatpages.views.flatpage' '/' %}">Home <span class="visually-hidden">(current)</span></a>
-              </li>
+              {% for page in flatpages %}
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{ page.url }}">{{ page.title }}</a>
+                </li>
+              {% endfor %}
             </ul>
           </div>
         </div>
