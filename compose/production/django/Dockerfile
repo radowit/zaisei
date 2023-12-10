@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 RUN pip install poetry
 COPY ./poetry.lock /
 COPY ./pyproject.toml /
-RUN poetry export --with=production --format=requirements.txt > requirements.txt
+RUN poetry export --without-hashes --with=production --format=requirements.txt > requirements.txt
 
 # Create Python Dependency and Sub-Dependency Wheels.
 RUN pip wheel --wheel-dir /usr/src/app/wheels -r requirements.txt
@@ -76,9 +76,5 @@ COPY --chown=django:django . ${APP_HOME}
 RUN chown django:django ${APP_HOME}
 
 USER django
-
-RUN DATABASE_URL="" \
-  DJANGO_SETTINGS_MODULE="config.settings.test" \
-  python manage.py compilemessages
 
 ENTRYPOINT ["/entrypoint"]
