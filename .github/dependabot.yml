@@ -61,13 +61,6 @@ updates:
     schedule:
       interval: 'daily'
 
-  - package-ecosystem: 'docker'
-    # Look for a `Dockerfile` in the `compose/production/traefik` directory
-    directory: 'compose/production/traefik/'
-    # Every weekday
-    schedule:
-      interval: 'daily'
-
   # Enable version updates for Python/Pip - Production
   - package-ecosystem: 'poetry'
     directory: '/'
