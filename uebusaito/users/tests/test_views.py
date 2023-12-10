@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 import pytest
 from django.conf import settings
 from django.contrib import messages
@@ -26,7 +28,7 @@ class TestUserUpdateView:
         https://github.com/pytest-dev/pytest-django/pull/258
     """
 
-    def dummy_get_response(self, request: HttpRequest):
+    def dummy_get_response(self, __: HttpRequest):
         return None
 
     def test_get_success_url(self, user: User, rf: RequestFactory):
@@ -83,7 +85,7 @@ class TestUserDetailView:
         request.user = UserFactory()
         response = user_detail_view(request, pk=user.pk)
 
-        assert response.status_code == 200
+        assert response.status_code == HTTPStatus.OK
 
     def test_not_authenticated(self, user: User, rf: RequestFactory):
         request = rf.get("/fake-url/")
@@ -92,5 +94,5 @@ class TestUserDetailView:
         login_url = reverse(settings.LOGIN_URL)
 
         assert isinstance(response, HttpResponseRedirect)
-        assert response.status_code == 302
+        assert response.status_code == HTTPStatus.FOUND
         assert response.url == f"{login_url}?next=/fake-url/"
