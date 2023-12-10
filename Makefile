@@ -14,3 +14,6 @@ test-unit:
 test-unit-cov:
 	docker-compose -f local.yml up postgres -d
 	pytest --cov
+
+deploy-local:
+	docker-compose -f local.yml up --build
