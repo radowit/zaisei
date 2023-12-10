@@ -5,9 +5,9 @@ from django.urls import include, path
 from django.views import defaults as default_views
 
 urlpatterns = [
-    path("", include("uebusaito.home.urls", namespace="home")),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
+    path("", include("django.contrib.flatpages.urls")),
     # Your stuff: custom urls includes go here
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]
