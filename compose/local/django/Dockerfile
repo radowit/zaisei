@@ -21,7 +21,7 @@ RUN poetry export --with=dev --format=requirements.txt > requirements.txt
 
 
 # Create Python Dependency and Sub-Dependency Wheels.
-RUN pip wheel --wheel-dir /usr/src/app/wheels -r requirements.txt
+RUN pip wheel --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
 
 
 # Python 'run' stage
@@ -63,7 +63,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 COPY --from=python-build-stage /usr/src/app/wheels  /wheels/
 
 # use wheels to install python dependencies
-RUN pip install --no-cache-dir --no-index --find-links=/wheels/ /wheels/* \
+RUN pip install --no-deps --no-cache-dir --no-index --find-links=/wheels/ /wheels/* \
   && rm -rf /wheels/
 
 COPY ./compose/production/django/entrypoint /entrypoint
