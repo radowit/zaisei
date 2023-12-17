@@ -24,8 +24,8 @@ if __name__ == "__main__":
         raise
 
     # This allows easy placement of apps within the interior
-    # uebusaito directory.
+    # zaisei directory.
     current_path = Path(__file__).parent.resolve()
-    sys.path.append(str(current_path / "uebusaito"))
+    sys.path.append(str(current_path / "zaisei"))
 
     execute_from_command_line(sys.argv)

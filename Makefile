@@ -24,4 +24,4 @@ install:
 	poetry install
 
 mypy:
-	poetry run mypy config manage.py merge_production_dotenvs_in_dotenv.py uebusaito
+	poetry run mypy config manage.py merge_production_dotenvs_in_dotenv.py zaisei

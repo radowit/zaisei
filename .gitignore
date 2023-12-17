@@ -352,7 +352,7 @@ tags
 dump.rdb
 
 ### Project template
-uebusaito/media/
+zaisei/media/
 
 .pytest_cache/
 .ipython/

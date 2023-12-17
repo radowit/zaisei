@@ -33,7 +33,7 @@ def update_site_forward(apps, schema_editor):
     """Set site domain and name."""
     Site = apps.get_model("sites", "Site")
     _update_or_create_site_with_sequence(
-        Site, schema_editor.connection, "radekmg.pl", "uebusaito"
+        Site, schema_editor.connection, "radekmg.pl", "zaisei"
     )
 
 

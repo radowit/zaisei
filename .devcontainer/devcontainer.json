@@ -1,6 +1,6 @@
 // For format details, see https://containers.dev/implementors/json_reference/
 {
-    "name": "uebusaito_dev",
+    "name": "zaisei_dev",
     "dockerComposeFile": [
         "../local.yml"
     ],

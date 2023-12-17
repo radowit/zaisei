@@ -23,7 +23,7 @@ jobs:
         envs: GITHUB_SHA
         script: |
           set -ex
-          cd uebusaito/
+          cd zaisei/
           git fetch
           git checkout $GITHUB_SHA
           docker-compose -f production.yml down

@@ -1,9 +1,9 @@
 # POETRY
 
 [tool.poetry]
-name = "uebusaito"
+name = "zaisei"
 version = "0.1.0"
-description = "Personal Website"
+description = "Finance manager"
 authors = ["Radosław Ganczarek <radoslaw@ganczarek.in>"]
 license = "BSD 3-Clause License"
 readme = "README.md"
@@ -60,7 +60,7 @@ python_files = ["tests.py", "test_*.py"]
 
 # ==== Coverage ====
 [tool.coverage.run]
-source = ["uebusaito", "tests", "merge_production_dotenvs_in_dotenv.py"]
+source = ["zaisei", "tests", "merge_production_dotenvs_in_dotenv.py"]
 omit = ["*/migrations/*", "*/templates/*"]
 plugins = ["django_coverage_plugin"]
 branch = true
@@ -79,7 +79,7 @@ target-version = ['py312']
 [tool.isort]
 profile = "black"
 line_length = 88
-known_first_party = ["uebusaito", "config"]
+known_first_party = ["zaisei", "config"]
 skip = ["venv/"]
 skip_glob = ["**/migrations/*.py"]
 
@@ -98,7 +98,7 @@ disallow_subclassing_any = true
 disallow_untyped_calls = true
 disallow_untyped_decorators = true
 disallow_untyped_defs = true
-exclude = ["tests", "uebusaito/.*/tests/.*"]
+exclude = ["tests", "zaisei/.*/tests/.*"]
 plugins = ["mypy_django_plugin.main"]
 pretty = true
 python_version = "3.12"
@@ -248,7 +248,7 @@ select = [
     "S",       # flake8-bandit
     "PLR6301", # Method could be a function, class method, or static method
 ]
-"uebusaito/*/migrations/*" = [
+"zaisei/*/migrations/*" = [
     "ANN",    # flake8-annotations
     "E501",   # Line too long
     "RUF012", # Mutable class attributes should be annotated with `typing.ClassVar`

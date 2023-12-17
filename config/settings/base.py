@@ -6,8 +6,8 @@ from pathlib import Path
 import environ  # type: ignore [import-untyped]
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
-# uebusaito/
-APPS_DIR = BASE_DIR / "uebusaito"
+# zaisei/
+APPS_DIR = BASE_DIR / "zaisei"
 env = environ.Env()
 
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
@@ -82,8 +82,8 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
 MIGRATION_MODULES = {
-    "flatpages": "uebusaito.contrib.flatpages.migrations",
-    "sites": "uebusaito.contrib.sites.migrations",
+    "flatpages": "zaisei.contrib.flatpages.migrations",
+    "sites": "zaisei.contrib.sites.migrations",
 }
 
 # AUTHENTICATION

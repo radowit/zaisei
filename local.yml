@@ -1,16 +1,16 @@
 version: '3'
 
 volumes:
-  uebusaito_local_postgres_data: {}
-  uebusaito_local_postgres_data_backups: {}
+  zaisei_local_postgres_data: {}
+  zaisei_local_postgres_data_backups: {}
 
 services:
   django:
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
-    image: uebusaito_local_django
-    container_name: uebusaito_local_django
+    image: zaisei_local_django
+    container_name: zaisei_local_django
     depends_on:
       - postgres
     volumes:
@@ -26,11 +26,11 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
-    image: uebusaito_production_postgres
-    container_name: uebusaito_local_postgres
+    image: zaisei_production_postgres
+    container_name: zaisei_local_postgres
     volumes:
-      - uebusaito_local_postgres_data:/var/lib/postgresql/data
-      - uebusaito_local_postgres_data_backups:/backups
+      - zaisei_local_postgres_data:/var/lib/postgresql/data
+      - zaisei_local_postgres_data_backups:/backups
     env_file:
       - ./.envs/.local/.postgres
     ports:
