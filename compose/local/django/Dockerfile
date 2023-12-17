@@ -21,7 +21,7 @@ RUN poetry export --with=dev --format=requirements.txt > requirements.txt
 
 
 # Create Python Dependency and Sub-Dependency Wheels.
-RUN pip wheel --wheel-dir /usr/src/app/wheels -r requirements.txt
+RUN pip wheel --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
 
 
 # Python 'run' stage
